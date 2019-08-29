@@ -4,13 +4,16 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "dev": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
+    "build:dev": "vue-cli-service build --mode dev",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^2.6.5",
     "iview": "^3.5.0-rc.1",
     "iview-loader": "^1.2.2",
+    "qrcode": "^1.4.1",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
@@ -27,6 +30,7 @@
     "eslint-plugin-vue": "^5.0.0",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
+    "parent-module": "^2.0.0",
     "vue-template-compiler": "^2.6.10"
   },
   "description": "## Project setup ``` npm install ```",

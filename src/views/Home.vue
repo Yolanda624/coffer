@@ -18,7 +18,11 @@ export default {
         {
           title: "图片查看器",
           route: "/photo-view"
-        }
+        },
+        {
+          title: "分割面板",
+          route: "/split-panel"
+        },
       ]
     }
   }

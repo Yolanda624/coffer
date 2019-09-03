@@ -1,0 +1,65 @@
+<template>
+  <div class="css-world">
+    <div class="left">
+       <b> 兼容性查询地址：<a href="https://caniuse.com/">https://caniuse.com/</a> </b>
+       <br>
+       <hr>
+      <router-link v-for="(item,index) in list" :key="`route${index}`" :to="{name:item.name}">{{index + 1}}、{{item.title}} <br> </router-link>
+    </div>
+    <div class="right">
+      <router-view/>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  data(){
+    return {
+      list:[
+        {
+          title: '（1）flexbox+magin-left、（2）float实现左重右轻的列表排版',
+          name: 'left-heavy-right-light'
+        },
+        {
+          title: '文字竖向排版',
+          name: 'writing-mode-vertical'
+        },
+        {
+          title: '使用text-align-last对齐两端文本',
+          name: 'text-align-last-justify'
+        },
+        {
+          title: '使用:not()去除无用属性',
+          name: 'not'
+        },
+        {
+          title: '横向滚动列表',
+          name: 'overflow-x-auto'
+        },
+        {
+          title: '<input>搭配valid+invalid完成校验样式',
+          name: 'valid-invalid'
+        },
+      ]
+    }
+  }
+}
+</script>
+<style lang="less" scoped>
+.css-world{
+  font-size: 14px;
+  a{
+    font-weight: 700;
+  }
+  .left,.right{
+    width: 50%;
+    border: 2px solid #ccc;
+  }
+}
+  .left{
+    float: left;
+  }
+  .right{
+    float: right;
+  }
+</style>

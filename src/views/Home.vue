@@ -23,6 +23,10 @@ export default {
           title: "分割面板",
           route: "/split-panel"
         },
+        {
+          title: "CSS相关技巧知识点",
+          route: "/css-world"
+        }
       ]
     }
   }

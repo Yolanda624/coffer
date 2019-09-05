@@ -60,6 +60,21 @@ export default new Router({
           path: 'valid-invalid',
           name: 'valid-invalid',
           component: () => import('@/views/CSS-WORLD/valid-invalid.vue')
+        },
+        {
+          path: 'attr-data',
+          name: 'attr-data',
+          component: () => import('@/views/CSS-WORLD/attr-data.vue')
+        },
+        {
+          path: 'beauty-checked',
+          name: 'beauty-checked',
+          component: () => import('@/views/CSS-WORLD/beauty-checked.vue')
+        },
+        {
+          path: 'juejin-login-css',
+          name: 'juejin-login-css',
+          component: () => import('@/views/CSS-WORLD/juejin-login-css.vue')
         }
       ]
     }

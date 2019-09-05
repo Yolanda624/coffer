@@ -40,6 +40,18 @@ export default {
           title: '<input>搭配valid+invalid完成校验样式',
           name: 'valid-invalid'
         },
+        {
+          title: '使用attr()抓取data-*实现tooltip效果',
+          name: 'attr-data'
+        },
+        {
+          title: '使用+或~美化选项框',
+          name: 'beauty-checked'
+        },
+        {
+          title: '纯CSS实现掘金登录/注册页面',
+          name: 'juejin-login-css'
+        },
       ]
     }
   }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p><b> 要点：</b></p> `<input>`使用伪类:valid和:invalid配合pattern校验表单输入的内容
+    <p><b> 要点：</b></p> &lt;input&gt;使用伪类:valid和:invalid配合pattern校验表单输入的内容
     <p><b> 场景：</b></p>表单校验
     <p><b> 兼容：</b></p>pattern、:valid、:invalid
     <div class="bruce flex-ct-x">

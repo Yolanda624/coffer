@@ -26,6 +26,10 @@ export default {
         {
           title: "CSS相关技巧知识点",
           route: "/css-world"
+        },
+        {
+          title: "froala富文本编辑器",
+          route: "/froala"
         }
       ]
     }

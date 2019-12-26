@@ -73,6 +73,16 @@ export default new Router({
       path: 'juejin-login-css',
       name: 'juejin-login-css',
       component: () => import('@/views/CSS-WORLD/juejin-login-css.vue')
+    },
+    {
+      path: 'flex-margin',
+      name: 'flex-margin',
+      component: () => import('@/views/CSS-WORLD/flex-margin.vue')
+    },
+    {
+      path: 'flex-grow',
+      name: 'flex-grow',
+      component: () => import('@/views/CSS-WORLD/flex-grow.vue')
     }
     ]
   }, {

@@ -4,7 +4,9 @@
        <b> 兼容性查询地址：<a href="https://caniuse.com/">https://caniuse.com/</a> </b>
        <br>
        <hr>
-      <router-link v-for="(item,index) in list" :key="`route${index}`" :to="{name:item.name}">{{index + 1}}、{{item.title}} <br> </router-link>
+      <router-link v-for="(item,index) in list" :key="`route${index}`" :to="{name:item.name}" active-class = "router_active">
+        <span>{{index + 1}}、{{item.title}}</span>
+        <br> </router-link>
     </div>
     <div class="right">
       <router-view/>
@@ -13,9 +15,9 @@
 </template>
 <script>
 export default {
-  data(){
+  data () {
     return {
-      list:[
+      list: [
         {
           title: '（1）flexbox+magin-left、（2）float实现左重右轻的列表排版',
           name: 'left-heavy-right-light'
@@ -52,10 +54,18 @@ export default {
           title: '纯CSS实现掘金登录/注册页面',
           name: 'juejin-login-css'
         },
+        {
+          title: 'flex布局巧妙设计',
+          name: 'flex-margin'
+        },
+        {
+          title: 'flex-grow布局设计',
+          name: 'flex-grow'
+        }
       ]
-    }
+    };
   }
-}
+};
 </script>
 <style lang="less" scoped>
 .css-world{
@@ -73,5 +83,9 @@ export default {
   }
   .right{
     float: right;
+  }
+  .router_active {
+    color: red;
+    font-weight: bold;
   }
 </style>

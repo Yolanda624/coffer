@@ -8,49 +8,49 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       animations: []
     };
   },
   methods: {
-    handleStart() {
+    handleStart () {
       // 假设一个animations 函数数组
       let anims = [].concat(this.animations);
       this.chainAnimationsPromise('假装是动画的DOM', anims);
     },
 
-    handleStart2() {
+    handleStart2 () {
       let anims = [].concat(this.animations);
       let ran = Math.floor(Math.random() * 10);
       console.log('要出错的是：', ran);
-      anims[ran] = function() {
+      anims[ran] = function () {
         throw new Error(`第${ran}个动画出错了！`);
-      }
-      this.chainAnimationsPromise("会有一个出错的", anims);
+      };
+      this.chainAnimationsPromise('会有一个出错的', anims);
     },
 
-
-    async chainAnimationsPromise(elem, animations) {
+    async chainAnimationsPromise (elem, animations) {
       // 变量ret用来保存上一个动画的返回值
       try {
         var ret = null;
-        for (var anim of animations) {
+        for (let anim of animations) {
           ret = await anim(elem);
-          console.log('ret', ret)
+          console.log('ret', ret);
         }
       } catch (e) {
         // 忽略错误，继续执行
-        console.log('catch中的error', e)
+        console.log('catch中的error', e);
       }
       return ret;
     }
   },
-  created() {
+
+  created () {
     // 造一个虚假数据
     let animations = [];
     for (let i = 0; i < 10; i++) {
-      animations.push(function(anim) {
+      animations.push(function (anim) {
         // console.log(anim + i);
         return anim + i;
       });

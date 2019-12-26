@@ -30,7 +30,11 @@ export default {
         {
           title: "froala富文本编辑器",
           route: "/froala"
-        }
+        },
+        {
+          title: "ES6",
+          route: "/es6"
+        },
       ]
     }
   }

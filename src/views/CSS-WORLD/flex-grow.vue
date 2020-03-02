@@ -35,7 +35,6 @@
     <h3> 当flex-grow都相同且之和小于1时，按占比
       <i>分配剩余</i> 的空间。</h3>
     <h4>本例中，flex-grow都是0.1</h4>
-    </p>
     <ul class="wrapper">
       <li class="item item-ex4" v-for="index in 5" :key="`flexaGrow${index}`">{{index}}</li>
     </ul>
@@ -44,7 +43,6 @@
     <h3>example4</h3>
     <h3> 当flex-grow都相同且之和大于等于1时，相当于等分总空间</h3>
     <h4>本例中，flex-grow都是0.3或者0.2</h4>
-    </p>
     <ul class="wrapper">
       <li class="item item-ex5" v-for="index in 5" :key="`flexaGrow${index}`">{{index}}</li>
     </ul>

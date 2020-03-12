@@ -1,25 +1,9 @@
 <template>
   <div id="meQrcode" :title="qrUrl">
     <div class="qrcode_box">
-      <img
-        class="qrcode_canvas"
-        id="qrcode_canvas"
-        ref="qrcode_canvas"
-        alt="二维码本图"
-      />
-      <img
-        v-if="qrLogo"
-        class="qrcode_logo"
-        ref="qrcode_logo"
-        :src="qrLogo"
-        alt="公司logo"
-      />
-      <canvas
-        :width="qrSize"
-        :height="qrSize"
-        class="canvas"
-        ref="canvas"
-      ></canvas>
+      <img class="qrcode_canvas" id="qrcode_canvas" ref="qrcode_canvas" alt="二维码本图" />
+      <img v-if="qrLogo" class="qrcode_logo" ref="qrcode_logo" :src="qrLogo" alt="公司logo" />
+      <canvas :width="qrSize" :height="qrSize" class="canvas" ref="canvas"></canvas>
     </div>
   </div>
 </template>
@@ -41,7 +25,6 @@ export default {
       default: "百度一下，也不知道"
     },
     qrLogo: {
-      type: String,
       default: logo
     },
     qrLogoSize: {
@@ -55,7 +38,7 @@ export default {
   },
   data() {
     return {
-      qrUrl:"http://www.baidu.com/"
+      qrUrl: "",
     };
   },
   methods: {
@@ -80,11 +63,12 @@ export default {
           let ctx = canvas.getContext("2d");
 
           setTimeout(() => {
-              ctx.drawImage(qrcode_canvas, 0, 0, that.qrSize, that.qrSize);
+            ctx.drawImage(qrcode_canvas, 0, 0, that.qrSize, that.qrSize);
             if (that.qrLogo) {
               //设置logo大小
               //设置获取的logo将其变为圆角以及添加白色背景
               ctx.fillStyle = "#fff";
+              // ctx.strokeStyle = "#f00"; // 中间logo描边颜色为 #f00
               ctx.beginPath();
               let logoPosition = (that.qrSize - that.qrLogoSize) / 2; //logo相对于canvas居中定位
               let h = that.qrLogoSize + 6; //圆角高 10为基数(logo四周白色背景为10/2)
@@ -98,7 +82,9 @@ export default {
               ctx.arcTo(x, y + h, x, y, r);
               ctx.arcTo(x, y, x + w, y, r);
               ctx.closePath();
+              // ctx.stroke(); // 中间logo描边
               ctx.fill();
+              let a;
               ctx.drawImage(
                 qrcode_logo,
                 logoPosition,
@@ -126,20 +112,26 @@ export default {
               ctx.fillStyle = "#333";
               ctx.fillText(that.qrText, fleft, ftop);
             }
-            canvas.style.display = "none";
             qrcode_canvas.src = canvas.toDataURL();
-            qrcode_canvas.style.display = "inline-block";
           }, 0);
         }
       );
     }
+  },
+  watch: {
+    bQrUrl(nv) {
+      this.qrUrl = nv;
+    }
+  },
+  created() {
+    this.qrUrl = this.bQrUrl;
   },
   mounted() {
     this.handleQrcodeToDataUrl();
   },
   updated() {
     this.handleQrcodeToDataUrl();
-  },
+  }
 };
 </script>
 <style scoped>

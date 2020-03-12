@@ -17,8 +17,11 @@ module.exports = {
     "no-undef": "warn",
     "camelcase": "off",
     "semi" : ["warn", "always"],
-    "no-unused-vars": ["warn", { "vars": "all", "args": "none", "ignoreRestSiblings": false }]
-
+    "no-unused-vars": ["warn", { "vars": "all", "args": "none", "ignoreRestSiblings": false }],
+    "quotes": {
+      "avoidEscape": true,
+      "allowTemplateLiterals": true
+    }
   },
   parserOptions: {
     parser: 'babel-eslint'

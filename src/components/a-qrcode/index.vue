@@ -2,7 +2,6 @@
   <div id="meQrcode" :title="qrUrl">
     <div class="qrcode_box">
       <img class="qrcode_canvas" id="qrcode_canvas" ref="qrcode_canvas" alt="二维码本图" />
-      <img v-if="qrLogo" class="qrcode_logo" ref="qrcode_logo" :src="qrLogo" alt="公司logo" />
       <canvas :width="qrSize" :height="qrSize" class="canvas" ref="canvas"></canvas>
     </div>
   </div>
@@ -11,7 +10,7 @@
 import QRCode from "qrcode";
 import logo from "@/assets/qrcode.jpg";
 export default {
-  // name: "AQrcode",
+  name: "AQrcode",
   props: {
     bQrUrl: {
       type: String,
@@ -38,7 +37,7 @@ export default {
   },
   data() {
     return {
-      qrUrl: "",
+      qrUrl: ""
     };
   },
   methods: {
@@ -52,7 +51,6 @@ export default {
      */
     handleQrcodeToDataUrl() {
       let qrcode_canvas = this.$refs.qrcode_canvas;
-      let qrcode_logo = this.$refs.qrcode_logo;
       let canvas = this.$refs.canvas;
       const that = this;
       QRCode.toDataURL(
@@ -65,6 +63,8 @@ export default {
           setTimeout(() => {
             ctx.drawImage(qrcode_canvas, 0, 0, that.qrSize, that.qrSize);
             if (that.qrLogo) {
+              let qrcode_logo = new Image();
+              qrcode_logo.src = that.qrLogo;
               //设置logo大小
               //设置获取的logo将其变为圆角以及添加白色背景
               ctx.fillStyle = "#fff";
@@ -84,14 +84,16 @@ export default {
               ctx.closePath();
               // ctx.stroke(); // 中间logo描边
               ctx.fill();
-              let a;
-              ctx.drawImage(
-                qrcode_logo,
-                logoPosition,
-                logoPosition,
-                that.qrLogoSize,
-                that.qrLogoSize
-              );
+
+              qrcode_logo.onload = () => {
+                ctx.drawImage(
+                  qrcode_logo,
+                  logoPosition,
+                  logoPosition,
+                  that.qrLogoSize,
+                  that.qrLogoSize
+                );
+              };
             }
             if (that.qrText) {
               //设置字体

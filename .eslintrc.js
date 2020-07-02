@@ -18,10 +18,8 @@ module.exports = {
     "camelcase": "off",
     "semi" : ["warn", "always"],
     "no-unused-vars": ["warn", { "vars": "all", "args": "none", "ignoreRestSiblings": false }],
-    "quotes": {
-      "avoidEscape": true,
-      "allowTemplateLiterals": true
-    }
+    "quotes": 0,
+    "space-before-function-paren": ["off", "always"]
   },
   parserOptions: {
     parser: 'babel-eslint'

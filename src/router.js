@@ -5,6 +5,7 @@ import Home from './views/Home.vue';
 Vue.use(Router);
 
 export default new Router({
+  mode: "history",
   routes: [{
     path: '/',
     name: 'home',
@@ -106,7 +107,10 @@ export default new Router({
         component: () => import('@/views/ES6/async-await-for.vue')
       }
     ]
-
+  }, {
+    path: '/water-fall',
+    name: 'water-fall',
+    component: () => import('@/views/water-fall/index.vue')
   }
   ]
 });

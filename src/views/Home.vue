@@ -35,6 +35,10 @@ export default {
           title: "ES6",
           route: "/es6"
         },
+        {
+          title: "瀑布流",
+          route: "/water-fall"
+        }
       ]
     }
   }

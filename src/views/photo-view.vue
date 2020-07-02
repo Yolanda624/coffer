@@ -21,10 +21,10 @@ export default {
     };
   },
   methods: {
-    bpvClose() {
+    bpvClose () {
       this.photoViewShow = false;
     },
-    btnClick() {
+    btnClick () {
       // this.title = "巴拉巴拉小魔仙"
       this.srcArr = [
         "http://pic16.nipic.com/20111006/6239936_092702973000_2.jpg",
@@ -33,10 +33,9 @@ export default {
         "http://pic25.nipic.com/20121117/9252150_165726249000_2.jpg",
         "http://pic13.nipic.com/20110409/7119492_114440620000_2.jpg"
       ];
-      this.srcStr = 
-        "http://pic60.nipic.com/file/20150129/6448355_204110337000_2.jpg";
+      this.srcStr = "http://pic60.nipic.com/file/20150129/6448355_204110337000_2.jpg";
       let n = this.n;
-      if (this.srcArr && this.n > this.srcArr.length -1) {
+      if (this.srcArr && this.n > this.srcArr.length - 1) {
         this.n = 0;
       }
       this.n++;

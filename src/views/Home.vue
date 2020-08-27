@@ -38,7 +38,11 @@ export default {
         {
           title: "瀑布流",
           route: "/water-fall"
-        }
+        },
+        {
+          title: "锚点(router中scrollBehavior处理)",
+          route: "/anchor"
+        },
       ]
     }
   }

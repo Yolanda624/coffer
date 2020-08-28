@@ -6,6 +6,14 @@ Vue.use(Router);
 
 export default new Router({
   mode: "history",
+  // scrollBehavior (to, from, savedPosition) {
+  //   console.log('scrollBehavior', to, savedPosition)
+  //   if (to.hash) {
+  //     return {
+  //       selector: to.hash
+  //     }
+  //   }
+  // },
   routes: [{
     path: '/',
     name: 'home',
@@ -84,6 +92,11 @@ export default new Router({
       path: 'flex-grow',
       name: 'flex-grow',
       component: () => import('@/views/CSS-WORLD/flex-grow.vue')
+    },
+    {
+      path: 'hover',
+      name: 'hover',
+      component: () => import('@/views/CSS-WORLD/hover.vue')
     }
     ]
   }, {
@@ -111,6 +124,10 @@ export default new Router({
     path: '/water-fall',
     name: 'water-fall',
     component: () => import('@/views/water-fall/index.vue')
+  }, {
+    path: '/anchor',
+    name: 'anchor',
+    component: () => import('@/views/Anchor/index.vue')
   }
   ]
 });

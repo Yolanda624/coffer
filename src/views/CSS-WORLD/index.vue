@@ -61,6 +61,10 @@ export default {
         {
           title: 'flex-grow布局设计',
           name: 'flex-grow'
+        },
+        {
+          title: 'css hover效果',
+          name: 'hover'
         }
       ]
     };

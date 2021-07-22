@@ -97,6 +97,11 @@ export default new Router({
       path: 'hover',
       name: 'hover',
       component: () => import('@/views/CSS-WORLD/hover.vue')
+    },
+    {
+      path: 'css-flame',
+      name: 'css-flame',
+      component: () => import('@/views/CSS-WORLD/flame.vue')
     }
     ]
   }, {

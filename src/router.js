@@ -25,6 +25,11 @@ export default new Router({
     component: () => import('@/views/qrcode.vue')
   },
   {
+    path: '/convert-canvas',
+    name: 'convert-canvas',
+    component: () => import('@/views/convert_canvas.vue')
+  },
+  {
     path: '/photo-view',
     name: 'photo-view',
     component: () => import('@/views/photo-view.vue')

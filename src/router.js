@@ -107,6 +107,16 @@ export default new Router({
       path: 'css-flame',
       name: 'css-flame',
       component: () => import('@/views/CSS-WORLD/flame.vue')
+    },
+    {
+      path: 'css-arc',
+      name: 'css-arc',
+      component: () => import('@/views/CSS-WORLD/css-arc.vue')
+    },
+    {
+      path: 'arc-area-shadow',
+      name: 'arc-area-shadow',
+      component: () => import('@/views/svg-draw/arc_area_shadow.vue')
     }
     ]
   }, {
@@ -138,6 +148,11 @@ export default new Router({
     path: '/anchor',
     name: 'anchor',
     component: () => import('@/views/Anchor/index.vue')
+  },
+  {
+    path: '/pan',
+    name: 'pan',
+    component: () => import('@/views/html-to-pdf/htmlToPdf.vue')
   }
   ]
 });

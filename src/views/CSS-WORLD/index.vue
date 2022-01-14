@@ -70,6 +70,10 @@ export default {
           title: 'css 火焰效果',
           name: 'css-flame'
         },
+        {
+          title: 'CSS弧线',
+          name: 'css-arc'
+        }
       ]
     };
   }

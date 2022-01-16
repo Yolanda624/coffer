@@ -65,6 +65,14 @@ export default {
         {
           title: 'css hover效果',
           name: 'hover'
+        },
+        {
+          title: 'css 火焰效果',
+          name: 'css-flame'
+        },
+        {
+          title: 'CSS弧线',
+          name: 'css-arc'
         }
       ]
     };

@@ -25,6 +25,11 @@ export default new Router({
     component: () => import('@/views/qrcode.vue')
   },
   {
+    path: '/convert-canvas',
+    name: 'convert-canvas',
+    component: () => import('@/views/convert_canvas.vue')
+  },
+  {
     path: '/photo-view',
     name: 'photo-view',
     component: () => import('@/views/photo-view.vue')
@@ -97,6 +102,21 @@ export default new Router({
       path: 'hover',
       name: 'hover',
       component: () => import('@/views/CSS-WORLD/hover.vue')
+    },
+    {
+      path: 'css-flame',
+      name: 'css-flame',
+      component: () => import('@/views/CSS-WORLD/flame.vue')
+    },
+    {
+      path: 'css-arc',
+      name: 'css-arc',
+      component: () => import('@/views/CSS-WORLD/css-arc.vue')
+    },
+    {
+      path: 'arc-area-shadow',
+      name: 'arc-area-shadow',
+      component: () => import('@/views/svg-draw/arc_area_shadow.vue')
     }
     ]
   }, {
@@ -133,6 +153,11 @@ export default new Router({
     path: '/leader-line',
     name: 'leader-line',
     component: () => import('@/views/leader-line/index.vue')
+  },
+  {
+    path: '/pan',
+    name: 'pan',
+    component: () => import('@/views/html-to-pdf/htmlToPdf.vue')
   }
   ]
 });

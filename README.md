@@ -1,5 +1,5 @@
 # coffer
-
+灵感来源有的来自网络、有的来自自己做过的项目。仅用于学习，不做商用。也请各位小伙伴共勉！
 ## Project setup
 ```
 npm install

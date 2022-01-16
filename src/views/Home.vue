@@ -16,6 +16,10 @@ export default {
           route: "/qrcode"
         },
         {
+          title: '将二维码图片附上文字和中间logo并转成二维码canvas',
+          route: 'convert-canvas'
+        },
+        {
           title: "图片查看器",
           route: "/photo-view"
         },

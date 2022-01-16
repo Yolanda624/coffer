@@ -1,13 +1,15 @@
 <template>
   <div>
     <a-split-panel></a-split-panel>
-    
+
     <!-- .wrapper 演示的是分割面板的基本实现原理 -->
     <div class="wrapper">
       <div class="pane pane-left"></div>
-      <div class="pane pane-right"></div>
+      <div class="pane pane-right">
+        来源：iivew。特别感谢iview的作者。
+      </div>
     </div>
-    
+
   </div>
 </template>
 <script>

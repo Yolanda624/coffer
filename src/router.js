@@ -128,6 +128,11 @@ export default new Router({
     path: '/anchor',
     name: 'anchor',
     component: () => import('@/views/Anchor/index.vue')
+  },
+  {
+    path: '/leader-line',
+    name: 'leader-line',
+    component: () => import('@/views/leader-line/index.vue')
   }
   ]
 });

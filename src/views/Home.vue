@@ -43,6 +43,10 @@ export default {
           title: "锚点(router中scrollBehavior处理)",
           route: "/anchor"
         },
+        {
+          title: "标线 LeaderLine 组件的用法",
+          route: "/leader-line"
+        },
       ]
     }
   }

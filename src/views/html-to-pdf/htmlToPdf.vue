@@ -1,7 +1,7 @@
 <template>
   <div class="html-to-pdf" id="pdfCentent">
       dgdsgsdfgggggggggggggggggggggggg
-      <button @click="onClick"></button>
+      <button @click="onClick">这是按钮</button>
   </div>
 </template>
 

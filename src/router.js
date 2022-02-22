@@ -155,8 +155,8 @@ export default new Router({
     component: () => import('@/views/leader-line/index.vue')
   },
   {
-    path: '/pan',
-    name: 'pan',
+    path: '/htmlToPdf',
+    name: 'htmlToPdf',
     component: () => import('@/views/html-to-pdf/htmlToPdf.vue')
   }
   ]

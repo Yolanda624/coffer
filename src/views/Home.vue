@@ -51,6 +51,18 @@ export default {
           title: "标线 LeaderLine 组件的用法",
           route: "/leader-line"
         },
+        {
+          title: "HTML转PDF",
+          route: '/htmlToPdf'
+        },
+        {
+          title: '高德地图DEMO',
+          route: '/amap'
+        },
+        {
+          title: 'HighchartsMap-DEMO',
+          route: '/hmap'
+        }
       ]
     }
   }

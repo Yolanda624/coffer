@@ -158,6 +158,10 @@ export default new Router({
     path: '/htmlToPdf',
     name: 'htmlToPdf',
     component: () => import('@/views/html-to-pdf/htmlToPdf.vue')
+  },
+  {
+    path: '/amap',
+    component: () => import('@/views/Maps/demo')
   }
   ]
 });

@@ -162,6 +162,10 @@ export default new Router({
   {
     path: '/amap',
     component: () => import('@/views/Maps/demo')
-  }
+  },
+    {
+      path: '/hmap',
+      component: () => import('@/views/Maps/highcharts-map-demo')
+    }
   ]
 });

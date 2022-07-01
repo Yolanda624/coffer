@@ -61,6 +61,7 @@ export default {
           let ctx = canvas.getContext("2d");
 
           setTimeout(() => {
+            console.log(6464646464, qrcode_canvas)
             ctx.drawImage(qrcode_canvas, 0, 0, that.qrSize, that.qrSize);
             if (that.qrLogo) {
               let qrcode_logo = new Image();

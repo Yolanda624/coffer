@@ -20,6 +20,11 @@
     <polygon fill="url(#linear)" points="30,1  60,17 60,52 30,69 1,52 1,17" stroke="url(#linear1)" stroke-width="2" />
       <path d="M0 600 Q100 50 600 600 Z" stroke="url(#linear1)" fill="url(#linear)"></path>
   </svg>
+
+  <svg width="150px" height="150px" class="svg">
+    <circle r="70" cy="75" cx="75" stroke-width="8" stroke="#EAEFF4" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+    <circle class="progress" r="70" cy="75" cx="75" stroke-width="8" stroke="#1593FF" stroke-linejoin="round" stroke-linecap="round" fill="none" stroke-dashoffset="0px"  stroke-dasharray="470px" />
+</svg>
   </div>
 </template>
 

@@ -18,7 +18,7 @@ export default new Router({
     path: '/',
     name: 'home',
     component: Home,
-    redirect: '/qrcode'
+    // redirect: '/three'
   },
   {
     path: '/qrcode',
@@ -164,9 +164,17 @@ export default new Router({
     path: '/amap',
     component: () => import('@/views/Maps/demo')
   },
-    {
-      path: '/hmap',
-      component: () => import('@/views/Maps/highcharts-map-demo')
-    }
+  {
+    path: '/hmap',
+    component: () => import('@/views/Maps/highcharts-map-demo')
+  },
+  {
+    path: '/three',
+    component: () => import('@/views/three/index'),
+  },
+  {
+    path: '/three/gltf',
+    component: () => import('@/views/three/gltf'),
+  },
   ]
 });

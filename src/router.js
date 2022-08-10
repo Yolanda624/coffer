@@ -176,5 +176,9 @@ export default new Router({
     path: '/three/gltf',
     component: () => import('@/views/three/gltf'),
   },
+    {
+      path: '/comps/a-date-picker',
+      component: () => import('@/views/comps-demo/date-picker-demo'),
+    },
   ]
 });

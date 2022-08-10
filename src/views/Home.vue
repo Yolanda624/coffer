@@ -5,9 +5,10 @@
 </template>
 
 <script>
-
 export default {
   name: 'home',
+  components: {
+  },
   data(){
     return{
       list: [
@@ -62,6 +63,10 @@ export default {
         {
           title: 'HighchartsMap-DEMO',
           route: '/hmap'
+        },
+        {
+          title: 'ADatePicker组件封装',
+          route: '/comps/a-date-picker'
         }
       ]
     }

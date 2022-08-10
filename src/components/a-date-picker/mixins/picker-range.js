@@ -19,7 +19,9 @@ export default {
     highlightRange: {
       type: Boolean,
       default: false
-    }
+    },
+    // 是否是 单一Range。例如：选中一个月，显示该月起始区间.
+    rangeSingle: Boolean
   },
   data() {
     return {
@@ -51,19 +53,18 @@ export default {
           }
           commit = true
           break
-        case this.types.MONTH:
-          if (v.getDate() !== 1) {
-            this.beginValue = util.setDate(v, {date: 1})
-          }
-          break
         // case this.types.MONTH:
-        //   temp = util.getMonthRange(v)
-        //   console.log('^^^^^^^^^', temp)
-        //   if (util.format(temp[1], this.finalFormat) !== this.endValue) {
-        //     this.endValue = util.format(temp[1], this.finalFormat)
+        //   if (v.getDate() !== 1) {
+        //     this.beginValue = util.setDate(v, {date: 1})
         //   }
-        //   commit = true
         //   break
+        case this.types.MONTH:
+          temp = util.getMonthRange(v)
+          if (util.format(temp[1], this.finalFormat) !== this.endValue) {
+            this.endValue = util.format(temp[1], this.finalFormat)
+          }
+          commit = true
+          break
       }
 
       this.$nextTick(() => {
@@ -97,6 +98,7 @@ export default {
   },
   methods: {
     updateRangeValue(value) {
+      console.log('updateRangeValue', value)
       // 没有初始值默认是空
       let beginValue = value[0] ? util.parse(value[0], this.finalFormat) : value[0]
       let endValue = value[1] ? util.parse(value[1], this.finalFormat) : value[1]
@@ -123,6 +125,7 @@ export default {
           temp = util.getMonthRange(beginValue)
           beginValue = temp[0]
           endValue = endValue ? util.getMonthRange(endValue)[1] : temp[1]
+
           break
         default:
           beginValue = value[0]

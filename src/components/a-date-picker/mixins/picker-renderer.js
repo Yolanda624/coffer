@@ -260,6 +260,9 @@ export default {
     // 判断需要渲染哪成单个日期选择还是按范围选择
     renderComponent() {
       if (!this.isRange) {
+        if (this.rangeSingle) {
+          return this.renderSpecialPicker();
+        }
         return this.renderSinglePicker()
       }
 
@@ -282,6 +285,7 @@ export default {
         [`date-picker--${this.type}`]: true,
         [`date-picker--${this.size}`]: true,
         'date-picker--range': this.isRange,
+        'date-picker--range-single': this.rangeSingle,
         'date-picker--clearable': this.clearable,
         'date-picker--show-icon': this.isIconVisible,
         'date-picker--show-lunar': this.showLunar,

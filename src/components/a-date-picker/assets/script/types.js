@@ -14,6 +14,9 @@ export default {
   get MONTH () {
     return 'month'
   },
+  get SRMONTH () {
+    return 'srmonth'
+  },
   get QUARTER () {
     return 'quarter'
   },

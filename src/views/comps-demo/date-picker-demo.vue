@@ -1,24 +1,12 @@
 <template>
   <div class="date-picker-demo">
-    <a-date-picker :week-start="1" format="yyyy/MM/dd" type="week" v-model="rweek"  @change="onChange">
-      <template slot="footer">
-        <div @click="datepickerType = 'week'">自然周</div>
-        <div @click="datepickerType = 'month'">自然月</div>
-      </template>
-<!--      <template slot="value">-->
-<!--        啊啊{{ this.rweek }}-->
-<!--      </template>-->
-    </a-date-picker>
+<!--    <a-date-picker :week-start="1" format="yyyy/MM/dd" type="week" v-model="rweek"  @change="onChange" />-->
 
-    <a-date-picker type="month"  v-model="rmonth"  @change="onChange">
-      <template slot="footer">
-        <div @click="datepickerType = 'week'">自然周</div>
-        <div @click="datepickerType = 'month'">自然月</div>
-      </template>
-      <!--      <template slot="value">-->
-      <!--        啊啊{{ this.rweek }}-->
-      <!--      </template>-->
-    </a-date-picker>
+    <a-date-picker type="year" range v-model="year" format="yyyy" @change="onChange" />
+    <a-date-picker type="month" rangeSingle format="yyyy/MM/dd" v-model="rmonth"  @change="onChange" />
+
+<!--    <a-date-picker type="quarter" :value="rquarter"  @change="onChange">-->
+<!--    </a-date-picker>-->
   </div>
 </template>
 
@@ -36,7 +24,10 @@ export default {
     return {
       datepickerType: 'week',
       rweek: [],
-      rmonth: []
+      month: '',
+      rmonth: [],
+      rquarter: [],
+      year: []
     };
   },
 
@@ -46,7 +37,7 @@ export default {
 
   methods: {
     onChange ({ type, value, src }, v) {
-      console.log('*******', type, value, src)
+      // console.log('*******', type, value, src)
     }
   },
 

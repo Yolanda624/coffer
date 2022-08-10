@@ -167,7 +167,7 @@ export default {
       if (lastDate < date) {
         value.setDate(lastDate)
       } else {
-        value.setDate(date)
+        value.setDate(e.date)
       }
       if (this.type === this.types.MONTH || this.type === this.types.QUARTER) {
         this.changeValue(value)

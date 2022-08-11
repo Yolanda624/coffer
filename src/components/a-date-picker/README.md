@@ -1,76 +1,37 @@
-# vue-datepicker
+# a-date-picker
 
 适用于 Vue2 的日期/时间选择组件。
 
-[![NPM](https://img.shields.io/npm/l/@wangankeji/vue-datepicker?style=flat-square)](https://gitee.com/wangankeji/vue-datepicker/blob/master/LICENSE)
-[![npm (scoped)](https://img.shields.io/npm/v/@wangankeji/vue-datepicker?style=flat-square)](https://www.npmjs.com/package/@wangankeji/vue-datepicker)
-![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/@wangankeji/vue-datepicker?style=flat-square)
-[![](https://data.jsdelivr.com/v1/package/npm/@wangankeji/vue-datepicker/badge)](https://www.jsdelivr.com/package/npm/@wangankeji/vue-datepicker)
-
 Powered by [popper.js V2](https://popper.js.org/docs/v2/)
 
-> 原 `@hyjiacan/vue-datepicker`
+> 原@wangankeji/vue-datepicker
+
+## 感谢
+特别感谢[网安科技vue-datepicker](https://gitee.com/wangankeji/vue-datepicker)。
+
+
+在其[源码](https://gitee.com/wangankeji/vue-datepicker )基础上做了部分调整，使其适合定制化需求。
+
+1、部分样式。
+
+2、增小功能，rangeSingle，选择2022年2月，value = ['2022-02-01', '2022-02-28']。
 
 ## 安装
 
 ### NodeJS 环境 (commonjs)
 
 ```bash
-npm i @wangankeji/vue-datepicker
+npm i a-date-picker
 ```
 
 或者
 
 ```bash
-yarn add @wangankeji/vue-datepicker
+yarn add a-date-picker
 ```
-
-可以通过以下方式获取最新的代码
-
-```bash
-git clone https://gitee.com/wangankeji/vue-datepicker.git
-```
-
-源码仓库 https://gitee.com/wangankeji/vue-datepicker
-
-或者直接 [download archive](https://gitee.com/wangankeji/vue-datepicker/archive/master.zip)
-
-### 浏览器环境 (umd)
-
-> Since 2.2.0
-
-与 NodeJS 环境相同，会暴露一个全局的 `DatePicker`。
-
-最新版本
-
-```html
-
-<script src="https://cdn.jsdelivr.net/npm/@wangankeji/vue-datepicker/dist/datepicker.umd.min.js"></script>
-```
-
-指定版本
-
-```html
-
-<script src="https://cdn.jsdelivr.net/npm/@wangankeji/vue-datepicker@<VERSION>/dist/datepicker.umd.min.js"></script>
-```
-
-> **unpkg** 也是可用的: 替换 *cdn.jsdelivr.net* 为 *unpkg.com*
-
-> 你也可以替换 *datepicker.umd.min.js* 为 *datepicker.umd.js* 以使用未压缩的版本进行开发调试。
-
-注意：在浏览器环境直接引入时，需要显示引入依赖
-
-[popper.js](https://popper.js.org/)
-
-```html
-
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1/dist/umd/popper.min.js"></script>
-```
+仓库：https://gitee.com/yolanda624/a-date-picker.git
 
 ## 使用
-
-[在线示例(CodePen)](https://codepen.io/hyjiacan/pen/WNOMYdo)
 
 ```vue
 
@@ -78,8 +39,7 @@ git clone https://gitee.com/wangankeji/vue-datepicker.git
   <date-picker v-model="date" type="date" :min="min" :max="max"/>
 </template>
 <script>
-import DatePicker from '@wangankeji/vue-datepicker'
-import '@wangankeji/vue-datepicker/dist/datepicker.css'
+import DatePicker from 'a-date-picker'
 
 export default {
   components: {DatePicker},
@@ -102,8 +62,7 @@ export default {
   <picker v-model="date"/>
 </template>
 <script>
-import {Picker} from '@wangankeji/vue-datepicker'
-import '@wangankeji/vue-datepicker/dist/datepicker.css'
+import {Picker} from 'a-date-picker'
 
 export default {
   components: {Picker},
@@ -115,8 +74,6 @@ export default {
 }
 </script>
 ```
-
-更多示例参见 https://wangankeji.gitee.io/vue-datepicker/
 
 ### 类型定义
 
@@ -191,6 +148,15 @@ export default {
 
 是否按范围选择。
 
+#### rangeSingle
+
+- type: Boolean
+- default: false
+
+单个日期选择是否按范围选择/显示。  
+e.g.若设置为true，选择2022年2月，value = ['2022-02-01', '2022-02-28']。
+若设置为false，选择2022年2月，value = '2022-02'。
+
 #### split
 
 - type: Boolean
@@ -213,9 +179,6 @@ export default {
 是否允许鼠标滚轮操作，当设置为 `true` 时，可以使用滚轮快速切换年/月翻页。
 
 #### week-start
-
-> Since 0.2.0
-
 - type: Number
 - default: 0
 
@@ -236,9 +199,6 @@ export default {
 控制弹出框是否可见。设置为`true`以显示。
 
 #### shortcuts
-
-> Since 0.3.0
-
 - type: Array
 
 快捷按钮的数据，这是一个对象数组。每一项的结构为:
@@ -261,18 +221,12 @@ export default {
 控制清除功能是否可用。可用时会显示清除按钮。
 
 #### hide-icon
-
-> Since 0.4.0
-
 - type: Boolean
 - default: false
 
 是否隐藏左侧的日历图标
 
 #### placeholder
-
-> Since 0.4.0
-
 - type: String, Array
 - default: 见下方
 
@@ -299,9 +253,6 @@ const placeholders = {
 ```
 
 #### highlight-range
-
-> Since 1.1.0
-
 - type: Boolean
 - default: `false`
 
@@ -324,43 +275,28 @@ const placeholders = {
 输入框是否可编辑。设置为`true`以手动输入日期/时间。
 
 #### to-body
-
-> since 2.0.3
-
 - type: Boolean
 - default: `true`
 
 #### popper-class
-
-> since 2.1.0
-
 - type: String
 - default: `''`
 
 指定附加到弹出框的样式名称(这个名称应该是全局的，而不是局部(`scoped`)的)。
 
 #### value-class
-
-> since 2.1.0
-
 - type: String
 - default: `''`
 
 指定附加到值显示部分的样式名称(这个名称应该是全局的，而不是局部(`scoped`)的)。
 
 #### popper-options
-
-> since 2.1.0
-
 - type: Object
 - default: `{}`
 
 传递给 `popperjs` 的初始化选项。详见 [popper.js#options](https://popper.js.org/docs/v2/constructors/#options)
 
 #### trigger
-
-> Since 2.2.0
-
 - type: String
 - default: `click`
 
@@ -371,27 +307,18 @@ const placeholders = {
 - 其它值 暂未处理。此时需要通过指定 `visible` 属性来触发
 
 #### show-lunar
-
-> Since 2.2.0
-
 - type: Boolean
 - default: `false`
 
 是否显示农历信息。
 
 #### show-festival
-
-> Since 2.2.1
-
 - type: Boolean
 - default: `false`
 
-是否显示节日信息。
+是否显示节日信息，前提要先设置显示农历show-lunar为true。
 
 #### markFunction
-
-> Since 2.3.0
-
 - type: Function
 
 标记函数，用于在日历上做标记。
@@ -408,7 +335,6 @@ const placeholders = {
 
 - type 指定的类型
 - src 事件源，用以区分事件是从何而来:
-  > Since 1.1.0
   - `picker` 选择面板
   - `shortcut` 快捷键
   - `init` 初始化
@@ -423,17 +349,11 @@ const placeholders = {
 > 注意：在指定了 `trigger=blur` 时，应该尽量避免在此插槽中使用会获得焦点的元素(e.g. `button/input/select`)，以防止弹框意外关闭。
 
 #### value
-
-> since 0.5.0
-
 自定义值的显示。
 
 参数: `{value, type, format, visible}`
 
 #### title
-
-> since 0.6.0
-
 设置选择器上方的标题文字
 
 当指定了 `range` 属性时，插槽需要传入包含两个元素:
@@ -449,9 +369,6 @@ const placeholders = {
 ```
 
 #### footer
-
-> Since 2.2.0
-
 设置选择器底部的内容。
 
 ## 工具函数
@@ -461,7 +378,7 @@ const placeholders = {
 引用:
 
 ```javascript
-import DatePicker from '@wangankeji/vue-datepicker'
+import DatePicker from 'a-date-picker'
 // DatePicker.util.format
 ```
 
@@ -674,154 +591,3 @@ date.setDate(date.getDate() + 3)
 ```
 
 可以仅指定一项(`y/m/d`其中之一)或同时指定多项，不区分大小写。
-
-## 支持
-
-- 感谢 [iconfont](https://www.iconfont.cn/) 提供的图标平台，以及开源图标的设计者们
-- 感谢 [LunarCalendar](https://github.com/zzyss86/LunarCalendar) 开源的农历算法
-
-## 更新日志
-
-### 2.2.4
-
-- 添加属性 `Datepicker.util` 代替 `DatePicker.$util`
-- 修复 无法使用 `Picker` 组件的问题
-- 调整 属性 `marker` 为 `mark-function`
-- 使用 `div+flex` 代替 `table` 布局
-
-### 2.2.3
-
-- 修复 新版本的 Vue 导致的插件展示错误
-
-### 2.2.1
-
-- 调整一些示例
-- 优化 时间选择器使用 添加 `marker` 属性支持
-- 修复 IE10下打不开选择框的问题
-- 修复 不同浏览器的样式混乱
-- 修复 插槽内的自定义内容不显示的问题
-- 优化 时间选择样式
-- 添加 时间修正支持
-
-### 2.2.0
-
-- 添加 农历显示支持 `show-lunar`
-- 添加 弹框的底部插槽 `footer` 支持
-- 添加 自定义触发支持 `trigger`
-
-### 2.1.0
-
-- 移除 `vue-popperjs`，直接使用 `popper.js`，以避免前者过多处理导致不可预料的问题
-- 添加 `popper-class` 和 `value-class` ，以深度自定义样式
-- 添加 `popper-options`，以自定义 `popper.js` 组件的行为
-- 添加 `to-body` 属性，以支持将弹框渲染至 `body` 元素下，以解决某些情况下弹框被其它元素挡住的问题
-- 修复 某些情况下选中值后无法关闭弹框的问题
-
-### 2.0.0
-
-- 修复 `season` 词义错误，使用 `quarter` 作为季度名称
-
-### 1.1.2
-
-- 修复 在仅改变了开始日期时，未触发 `change` 事件的问题
-
-### 1.1.1
-
-- 修复 选择弹框布局错乱
-
-### 1.1.0
-
-- 添加 `highlight-range` 属性，以高亮选中范围的背景
-- 优化 给 `change` 事件添加 `src` 参数，以辅助开发
-
-### 1.0.0
-
-- 优化 将样式文件生成到独立CSS文件中，不再混入JS代码
-- 修复 outline 样式
-
-### 0.6.14
-
-- 修复 `outline` 样式范围超出容器宽度的问题
-
-### 0.6.13
-
-- 修复 选中值后焦点仍然存在导致无法打开弹框的问题
-- 修复 点击清除按钮会打开弹框的问题
-- 修复 点击快捷按钮可能会关闭弹框的问题
-- 修复 其它问题
-- 优化 高亮当前日期
-
-### 0.6.12
-
-- 修复 点击快捷按钮时，会导致弹框关闭的问题
-
-### 0.6.10
-
-- 优化 支持通过焦点显示/隐藏弹框
-
-### 0.6.9
-
-- 修复 `type=week` 初始化时，传入值不是有正确的星期范围时可能不会触发值更新的问题
-
-### 0.6.8
-
-- 修复 `getDateRange` 在未传入 `option` 参数时报错的问题
-
-### 0.6.7
-
-- 修复 `getWeekRange` 计算错误
-
-### 0.6.6
-
-- 添加工具函数 `getDateRange` 与 `offsetDate`
-
-### 0.6.5
-
-- 优化 快捷键配置的json格式中，支持将 `value` 设置成函数
-
-### 0.6.0
-
-- 添加 `title` 插槽支持
-
-### 0.5.2
-
-- 修复 `getWeekRange` 计算错误
-
-### 0.5.0
-
-- 暴露出工具函数 `getWeekOfYear`
-- 添加 值渲染插槽
-
-### 0.4.0
-
-- 修改 `geWeek(Month/Quarter)Range` 参数
-- 添加 日历图标
-- 优化 样式
-- 移除 `split` 属性
-- 添加 `placeholder` 支持
-
-### 0.3.0
-
-- 优化 日历上对年的限制 1900 到 2999
-- 优化 范围选择样式
-- 优化 函数功能
-- 优化 统一样式类命名规则
-- 添加 清除值功能
-- 添加 空值支持
-- 添加 `shortcuts`属性以及`slots=shortcut`，用于放置快捷按钮
-
-### 0.2.6
-
-- 优化 `range` 属性，当设置 `type` 为 `week`或`quarter`时， `range` 自动变更为 `true`
-- 优化 `v-model` 属性，当设置的值为空(即未设置)时，使用当前日期
-
-### 0.2.5
-
-- 修复 计算周范围的错误
-- 添加 工具函数 DatePicker.$util
-- 添加 types 声明
-
-### 0.2.1
-
-- 修复 按范围选择时，背景透明的问题
-- 修复 选择1月28号以后，导致1月日历丢失的问题

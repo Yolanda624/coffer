@@ -98,7 +98,6 @@ export default {
   },
   methods: {
     updateRangeValue(value) {
-      console.log('updateRangeValue', value)
       // 没有初始值默认是空
       let beginValue = value[0] ? util.parse(value[0], this.finalFormat) : value[0]
       let endValue = value[1] ? util.parse(value[1], this.finalFormat) : value[1]

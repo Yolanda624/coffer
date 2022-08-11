@@ -57,7 +57,7 @@ export default {
       this.commitChanges()
     },
     value(v) {
-      if (this.isRange) {
+      if (this.isRange || this.rangeSingle) {
         if (util.equals(this.beginValue, v[0], this.finalFormat) && util.equals(this.endValue, v[1], this.finalFormat)) {
           return
         }
@@ -91,13 +91,12 @@ export default {
       this.singleValue = value ? util.format(value, this.finalFormat) : value;
     },
     commitChanges() {
-      console.log('datepicker~commitChanges', this.value)
 
-      const oldValue = this.isRange ? this.value.map(v => v ? util.format(v, this.finalFormat) : v) : (this.value ? util.format(this.value, this.finalFormat) : this.value)
-      const newValue = this.isRange ? this.formattedRangeValue : this.formattedValue
-      if (this.isRange) {
+      const oldValue = this.isRange || this.rangeSingle ? this.value.map(v => v ? util.format(v, this.finalFormat) : v) : (this.value ? util.format(this.value, this.finalFormat) : this.value)
+      const newValue = this.isRange || this.rangeSingle ? this.formattedRangeValue : this.formattedValue
+      if (this.isRange || this.rangeSingle) {
         if (oldValue[0] === newValue[0] && oldValue[1] === newValue[1]) {
-          return
+          return;
         }
       } else if (oldValue === newValue) {
         return

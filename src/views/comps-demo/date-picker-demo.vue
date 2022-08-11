@@ -1,12 +1,20 @@
 <template>
   <div class="date-picker-demo">
-<!--    <a-date-picker :week-start="1" format="yyyy/MM/dd" type="week" v-model="rweek"  @change="onChange" />-->
-
-    <a-date-picker type="year" range v-model="year" format="yyyy" @change="onChange" />
-    <a-date-picker type="month" rangeSingle format="yyyy/MM/dd" v-model="rmonth"  @change="onChange" />
-
-<!--    <a-date-picker type="quarter" :value="rquarter"  @change="onChange">-->
-<!--    </a-date-picker>-->
+    <a-date-picker
+      :type="datepickerType"
+      :week-start="1"
+      :max="new Date()"
+      rangeSingle
+      format="yyyy/MM/dd"
+      v-model="rdate"
+      placeholder="请选择时间"
+      show-lunar
+    >
+      <div slot="footer" class="date-picker-footer">
+        <div @click="onChange('week')">自然周</div>
+        <div @click="onChange('month')">自然月</div>
+      </div>
+    </a-date-picker>
   </div>
 </template>
 
@@ -23,11 +31,7 @@ export default {
   data() {
     return {
       datepickerType: 'week',
-      rweek: [],
-      month: '',
-      rmonth: [],
-      rquarter: [],
-      year: []
+      rdate: [],
     };
   },
 
@@ -36,8 +40,9 @@ export default {
   watch: {},
 
   methods: {
-    onChange ({ type, value, src }, v) {
+    onChange (v) {
       // console.log('*******', type, value, src)
+      this.datepickerType = v;
     }
   },
 

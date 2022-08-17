@@ -14,6 +14,9 @@ export default new Router({
   //     }
   //   }
   // },
+
+  // 为了配合qiankun主应用，此应用作为子项目之一
+  base: window.__POWERED_BY_QIANKUN__ ? '/coffer' : '/',
   routes: [{
     path: '/',
     name: 'home',

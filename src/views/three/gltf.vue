@@ -29,8 +29,9 @@ export default {
     },
     loader() {
       const loader = new GLTFLoader();
-      console.log(14141414, loader)
-      loader.load('./path/to/model.glb', gltf => {
+      const url = 'https://a.amap.com/jsapi_demos/static/gltf/Duck.gltf'
+      // const url = './path/to/model.glb'
+      loader.load(url, gltf => {
         this.scene.add(gltf.scene);
         console.log()
       }, process => {
@@ -41,6 +42,7 @@ export default {
     }
   },
   mounted() {
+    this.createScene();
     this.loader();
 
   }

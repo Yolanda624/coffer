@@ -180,6 +180,14 @@ export default new Router({
     component: () => import('@/views/three/gltf'),
   },
   {
+    path: '/three/dae',
+    component: () => import('@/views/three/dae'),
+  },
+  {
+    path: '/three/obj',
+    component: () => import('@/views/three/obj'),
+  },
+  {
     path: '/comps/a-date-picker',
     component: () => import('@/views/comps-demo/date-picker-demo'),
   },

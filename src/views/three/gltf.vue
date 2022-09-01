@@ -23,6 +23,8 @@ export default {
       this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
       this.renderer = new THREE.WebGLRenderer();
       this.renderer.setSize(window.innerWidth, window.innerHeight);
+
+      // 渲染器renderer的domElement元素表示渲染器中的画布。所有的渲染都是画在domElement上的
       document.body.appendChild(this.renderer.domElement);
       this.camera.position.set(0, 0, 50);
       this.camera.lookAt(0, 0, 0);

@@ -188,6 +188,10 @@ export default new Router({
     component: () => import('@/views/three/obj'),
   },
   {
+    path: '/three/car3d',
+    component: () => import('@/views/three/car3d/index'),
+  },
+  {
     path: '/comps/a-date-picker',
     component: () => import('@/views/comps-demo/date-picker-demo'),
   },

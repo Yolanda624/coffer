@@ -13,6 +13,7 @@
         车身颜色：
         <div v-for="color in colors" :style="{background: color}" @click="switchCarBodyColor(color)"></div>
       </div>
+      <b>点击车轱辘随机改变颜色</b>
     </div>
   </div>
 </template>
@@ -28,8 +29,12 @@ export default {
 
   data() {
     return {
-      viewWidth: window.innerWidth,
-      viewHeight: window.innerHeight,
+      viewBox: {
+        width: 0,
+        height: 0,
+        offsetLeft: 0,
+        offsetTop: 0
+      },
       scene: null, // 场景
       render: null, // 渲染器
       camera: null, // 相机
@@ -53,7 +58,12 @@ export default {
       colors: [
         "rgb(216, 27, 67)", "rgb(142, 36, 170)", "rgb(81, 45, 168)", "rgb(48, 63, 159)", "rgb(30, 136, 229)", "rgb(0, 137, 123)",
         "rgb(67, 160, 71)", "rgb(251, 192, 45)", "rgb(245, 124, 0)", "rgb(230, 74, 25)", "rgb(233, 30, 78)", "rgb(156, 39, 176)",
-        "rgb(0, 0, 0)"] // 车身颜色数组
+        "rgb(0, 0, 0)"
+      ], // 车身颜色数组
+
+      mouse: new THREE.Vector2(),
+      raycaster: new THREE.Raycaster()
+
 
     };
   },
@@ -64,26 +74,34 @@ export default {
 
   methods: {
     async init() {
+      this.viewBox = {
+        width: this.$refs.car3d.clientWidth,
+        height: this.$refs.car3d.clientHeight,
+        offsetLeft: this.$refs.car3d.offsetLeft,
+        offsetTop: this.$refs.car3d.offsetTop,
+      }
       this.setScene();
       await this.loadModel();
       this.setCamera();
       this.setLight();
       this.setControls();
       this.loop()
+
+      this.$refs.car3d.addEventListener('click', this.onMouseClick, false)
     },
 
     // 创建场景
     setScene() {
       this.scene = new THREE.Scene();
       this.renderer = new THREE.WebGLRenderer();
-      this.renderer.setSize(this.viewWidth, this.viewHeight);
+      this.renderer.setSize(this.viewBox.width, this.viewBox.height);
       // this.renderer.setClearColor(0xdfdfdf)
       document.querySelector('#car3d').appendChild(this.renderer.domElement);
     },
 
     setCamera() {
       const { x, y, z } = this.cameraMap;
-      this.camera = new THREE.PerspectiveCamera(60, this.viewWidth / this.viewHeight, 1, 1000);
+      this.camera = new THREE.PerspectiveCamera(60, this.viewBox.width / this.viewBox.height, 1, 1000);
       this.camera.position.set(x, y, z);
     },
 
@@ -108,7 +126,7 @@ export default {
       this.controls.maxPolarAngle = 0.9 * Math.PI / 2;
       this.controls.enabledZoom = true;
       this.controls.autoRotate = true;
-      this.controls.addEventListener('change', this.renderFun);
+      // this.controls.addEventListener('change', this.renderFun);
     },
 
     renderFun() {
@@ -119,7 +137,7 @@ export default {
 
     async loadModel() {
       this.isLoading = true;
-      const gltf = await this.loadFile('http://127.0.0.1:5500/teslaModel/scene.gltf');
+      const gltf = await this.loadFile('http://127.0.0.1:5500/tesla/scene.gltf');
       this.isLoading = false;
       this.scene.add(gltf.scene);
     },
@@ -159,6 +177,25 @@ export default {
       })
     },
 
+    onMouseClick(event) {
+      console.log('event', event.clientX, event.clientY, )
+      // 通过鼠标点击的位置计算出raycaster所需要的点的位置，以屏幕中心为原点，值的范围为-1 到 1
+      this.mouse.x = ((event.clientX - this.viewBox.offsetLeft) / this.viewBox.width) * 2 - 1
+      this.mouse.y = -((event.clientY - this.viewBox.offsetTop) / this.viewBox.height) * 2 + 1
+      // console.log('点击', this.mouse)
+      this.raycaster.setFromCamera(this.mouse, this.camera)
+      let intersects = this.raycaster.intersectObjects(this.scene.children)
+      // console.log('******intersects******', intersects)
+      for (let i = 0, len = intersects.length; i < len; i++) {
+        console.log('**** NAME ****', intersects[i].object.name)
+        if (intersects[i].object.name.includes('wheels')) {
+          // console.log(180, intersects[i].object)
+          let color = Math.random() * 16 * 0xffffff
+          intersects[i].object.material.color.set(color)
+        }
+      }
+    },
+
 
     // 帧循环
     loop() {
@@ -185,9 +222,13 @@ export default {
 
 <style lang='less' scoped>
 .card3d-index {
+  width: 900px;
+  height: 800px;
+  position: relative;
+  color: #ffffff;
   .maskLoading {
     background: #000;
-    position: fixed;
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -196,7 +237,7 @@ export default {
     bottom: 0;
     right: 0;
     z-index: 1111111;
-    color: #fff;
+    color: #ffffff;
   }
 
   .maskLoading .loading {
@@ -224,7 +265,6 @@ export default {
   }
 
   .mask {
-    color: #fff;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -235,7 +275,6 @@ export default {
     display: flex;
     flex-wrap: wrap;
     padding: 20px;
-
   }
 
   .flex div {

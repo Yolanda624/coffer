@@ -192,6 +192,24 @@ export default new Router({
     component: () => import('@/views/three/car3d/index'),
   },
   {
+    path: '/three/sprite',
+    component: () => import('@/views/three/sprite/index'),
+    children: [
+      {
+        path: 'sprite1',
+        component: () => import('@/views/three/sprite/sprite1')
+      },
+      {
+        path: 'sprite-tree',
+        component: () => import('@/views/three/sprite/sprite-tree')
+      },
+      {
+        path: 'sprite-rain',
+        component: () => import('@/views/three/sprite/sprite-rain')
+      }
+    ]
+  },
+  {
     path: '/comps/a-date-picker',
     component: () => import('@/views/comps-demo/date-picker-demo'),
   },

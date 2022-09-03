@@ -30,6 +30,9 @@ export default {
         {
           title: "CSS相关技巧知识点",
           route: "/css-world"
+        },{
+          title: 'svg绘制曲线面积图',
+          route: '/arc-area-shadow'
         },
         {
           title: "froala富文本编辑器",

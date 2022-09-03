@@ -113,13 +113,14 @@ export default new Router({
       name: 'css-arc',
       component: () => import('@/views/CSS-WORLD/css-arc.vue')
     },
-    {
-      path: 'arc-area-shadow',
-      name: 'arc-area-shadow',
-      component: () => import('@/views/svg-draw/arc_area_shadow.vue')
-    }
     ]
-  }, {
+  },
+  {
+    path: '/arc-area-shadow',
+    name: 'arc-area-shadow',
+    component: () => import('@/views/svg-draw/arc_area_shadow.vue')
+  },
+  {
     path: '/froala',
     name: 'froala',
     component: () => import('@/views/froala/index.vue')

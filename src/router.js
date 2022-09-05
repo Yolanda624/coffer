@@ -17,7 +17,8 @@ export default new Router({
   routes: [{
     path: '/',
     name: 'home',
-    component: Home
+    component: Home,
+    // redirect: '/three'
   },
   {
     path: '/qrcode',
@@ -156,9 +157,29 @@ export default new Router({
     component: () => import('@/views/leader-line/index.vue')
   },
   {
-    path: '/pan',
-    name: 'pan',
+    path: '/htmlToPdf',
+    name: 'htmlToPdf',
     component: () => import('@/views/html-to-pdf/htmlToPdf.vue')
-  }
+  },
+  {
+    path: '/amap',
+    component: () => import('@/views/Maps/demo')
+  },
+  {
+    path: '/hmap',
+    component: () => import('@/views/Maps/highcharts-map-demo')
+  },
+  {
+    path: '/three',
+    component: () => import('@/views/three/index'),
+  },
+  {
+    path: '/three/gltf',
+    component: () => import('@/views/three/gltf'),
+  },
+    {
+      path: '/comps/a-date-picker',
+      component: () => import('@/views/comps-demo/date-picker-demo'),
+    },
   ]
 });

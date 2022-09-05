@@ -22,11 +22,60 @@
         stroke="url(#linear1)"
         stroke-width="2"
       />
+      <path :d="arcPath" stroke="url(#linear1)" fill="url(#linear)"></path>
+    </svg>
+
+    <svg width="564" height="573">
+      <defs>
+        <linearGradient id="linear" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="rgba(6,81,191,0.18)" />
+          <stop offset="80%" stop-color="rgba(255,0,0,0)" />
+          <!-- <stop offset="50%" stop-color="rgba(8,68,158,0)"/> -->
+          <stop offset="100%" stop-color="rgba(0,108,255,0.35)" />
+        </linearGradient>
+
+        <linearGradient id="linear1" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#03ffea" />
+          <stop offset="100%" stop-color="#0f8bf1" />
+        </linearGradient>
+      </defs>
+      <polygon
+        fill="url(#linear)"
+        points="30,1  60,17 60,52 30,69 1,52 1,17"
+        stroke="url(#linear1)"
+        stroke-width="2"
+      />
       <path
-        :d="arcPath"
+        d="M0 600 Q100 50 600 600 Z"
         stroke="url(#linear1)"
         fill="url(#linear)"
       ></path>
+    </svg>
+
+    <svg width="150px" height="150px" class="svg">
+      <circle
+        r="70"
+        cy="75"
+        cx="75"
+        stroke-width="8"
+        stroke="#EAEFF4"
+        stroke-linejoin="round"
+        stroke-linecap="round"
+        fill="none"
+      />
+      <circle
+        class="progress"
+        r="70"
+        cy="75"
+        cx="75"
+        stroke-width="8"
+        stroke="#1593FF"
+        stroke-linejoin="round"
+        stroke-linecap="round"
+        fill="none"
+        stroke-dashoffset="0px"
+        stroke-dasharray="470px"
+      />
     </svg>
   </div>
 </template>
@@ -45,7 +94,7 @@ export default {
     }
   },
   methods: {
-        // <path d="M30 90 Q115 139 200 90"></path>
+    // <path d="M30 90 Q115 139 200 90"></path>
     // M30 90 ：表示开始点 x:30 y:90
     // Q115 139 ：表示控制点在 x:115 y:139
     // 200 90 ：表示结束点 x:200 y:90
@@ -61,24 +110,24 @@ export default {
       var PI = Math.PI;
 
       // 两点间的x轴夹角弧度
-      var xAngle=Math.atan2((y2-y1), (x2-x1));
+      var xAngle = Math.atan2((y2 - y1), (x2 - x1));
       // 转为角度
-      xAngle = 360*xAngle/(2*PI);
+      xAngle = 360 * xAngle / (2 * PI);
       // 两点间的长度
-      var L=Math.sqrt((y2-y1)*(y2-y1)+(x2-x1)*(x2-x1));
+      var L = Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
       // 计算等腰三角形斜边长度
-      var L2 = L/2 / Math.cos(angle* 2*PI/360);
+      var L2 = L / 2 / Math.cos(angle * 2 * PI / 360);
 
       // 求第一个顶点坐标，位于下边
-      var val1={};
+      var val1 = {};
       // 求第二个顶点坐标，位于上边
-      var val2={};
-      val1['x']=x1+Math.round(L2 * Math.cos((xAngle+angle)* 2*PI/360));
-      val1['y']=y1+Math.round(L2 * Math.sin((xAngle+angle)* 2*PI/360));
-      val2['x']=x1+Math.round(L2 * Math.cos((xAngle-angle)* 2*PI/360));
-      val2['y']=y1+Math.round(L2 * Math.sin((xAngle-angle)* 2*PI/360));
+      var val2 = {};
+      val1['x'] = x1 + Math.round(L2 * Math.cos((xAngle + angle) * 2 * PI / 360));
+      val1['y'] = y1 + Math.round(L2 * Math.sin((xAngle + angle) * 2 * PI / 360));
+      val2['x'] = x1 + Math.round(L2 * Math.cos((xAngle - angle) * 2 * PI / 360));
+      val2['y'] = y1 + Math.round(L2 * Math.sin((xAngle - angle) * 2 * PI / 360));
 
-      return [val1,val2];
+      return [val1, val2];
     },
 
 
@@ -142,13 +191,13 @@ export default {
     this.y_data = this.formatDataY(this.h);
     this.x_data = this.formatDataX(this.w, 26);
     this.XY_data = this.formatXY();
-    let val = this.getPosition({left: 60, top: 444}, {left: 117, top: 443}, 10)
+    let val = this.getPosition({ left: 60, top: 444 }, { left: 117, top: 443 }, 10)
     setTimeout(() => {
       this.computeControlVal();
 
     }, 0)
     this.XY_data.forEach((e, i) => {
-      if (i == 0)  this.arcPath = `M${this.h} ${e.top} L0 ${e.top}`;
+      if (i == 0) this.arcPath = `M${this.h} ${e.top} L0 ${e.top}`;
 
       this.arcPath += ` L${e.left} ${e.top}`
 

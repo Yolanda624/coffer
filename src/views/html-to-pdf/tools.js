@@ -1,6 +1,7 @@
 // 导出页面为PDF格式
 import html2canvas from 'html2canvas'
-<script src="https://cdn.bootcss.com/jspdf/1.3.4/jspdf.debug.js"></script>
+// require('https://cdn.bootcss.com/jspdf/1.3.4/jspdf.debug.js');
+import jsPDF from "jspdf";
 
 export const exportSavePdf = function (fileName, element) {
   // var element = document.getElementById('pdfCentent')
@@ -29,6 +30,6 @@ export const exportSavePdf = function (fileName, element) {
       }// 如果后面还有内容，添加一个空页
       // delete page;
     }
-    pdf.save(htmlTitle)
+    pdf.save(fileName)
   })
 }

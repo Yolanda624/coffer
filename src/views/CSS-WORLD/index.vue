@@ -73,6 +73,10 @@ export default {
         {
           title: 'CSS弧线',
           name: 'css-arc'
+        },
+        {
+          title: 'SVG',
+          name: 'arc-area-shadow'
         }
       ]
     };

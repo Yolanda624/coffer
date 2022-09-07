@@ -192,6 +192,10 @@ export default new Router({
     component: () => import('@/views/three/car3d/index'),
   },
   {
+    path: '/three/dianjimodel',
+    component: () => import('@/views/three/car3d/dianjimodel'),
+  },
+  {
     path: '/three/sprite',
     component: () => import('@/views/three/sprite/index'),
     children: [

@@ -22,6 +22,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment";
 export default {
   name: "index",
   components: {},
@@ -95,7 +96,7 @@ export default {
       this.scene = new THREE.Scene();
       this.renderer = new THREE.WebGLRenderer();
       this.renderer.setSize(this.viewBox.width, this.viewBox.height);
-      // this.renderer.setClearColor(0xdfdfdf)
+      this.renderer.setClearColor(0xdfdfdf)
       document.querySelector('#car3d').appendChild(this.renderer.domElement);
     },
 
@@ -109,7 +110,7 @@ export default {
     setLight() {
       this.ambientLight = new THREE.AmbientLight(0xffffff, 0.5) // 创建环境光
       this.scene.add(this.ambientLight) // 将环境光添加到场景
-
+      //
       this.directionalLight = new THREE.DirectionalLight(0xffffff, 0.5)
       this.directionalLight.position.set(-4, 8, 4)
       this.dHelper = new THREE.DirectionalLightHelper(this.directionalLight, 5, 0xff0000)
@@ -119,13 +120,18 @@ export default {
       this.hHelper = new THREE.HemisphereLightHelper(this.hemisphereLight, 5)
 
       this.scene.add(this.directionalLight, this.hemisphereLight)
+
+      const environment = new RoomEnvironment()
+      const pmremGenerator = new THREE.PMREMGenerator(this.renderer)
+      this.scene.environment = pmremGenerator.fromScene(environment).texture
+
     },
 
     setControls() {
       this.controls = new OrbitControls(this.camera, this.renderer.domElement);
       this.controls.maxPolarAngle = 0.9 * Math.PI / 2;
       this.controls.enabledZoom = true;
-      this.controls.autoRotate = true;
+      // this.controls.autoRotate = true;
       // this.controls.addEventListener('change', this.renderFun);
     },
 
@@ -137,7 +143,9 @@ export default {
 
     async loadModel() {
       this.isLoading = true;
-      const gltf = await this.loadFile('http://127.0.0.1:5500/tesla/scene.gltf');
+      // const gltf = await this.loadFile('http://127.0.0.1:5501/gltf-models/tesla/scene.gltf');
+      const gltf = await this.loadFile('http://127.0.0.1:5501/gltf-models/a1.gltf');
+      // const gltf = await this.loadFile('http://127.0.0.1:5501/motor.gltf');
       this.isLoading = false;
       this.scene.add(gltf.scene);
     },
@@ -145,6 +153,22 @@ export default {
     loadFile(url) {
       return new Promise((resolve, reject) => {
         this.loader.load(url, gltf => {
+          console.log(150150150, gltf)
+          gltf.scene.traverse( function ( child ) {
+            if (child.isMesh ) {
+
+              // child.frustumCulled = false;
+              // // //模型阴影
+              child.castShadow = true;
+
+              // // //模型自发光
+              // child.material.emissive = child.material.color;
+              // child.material.emissiveMap = child.material.map;
+              // child.material.color = new THREE.Color(0xff0000);
+            } else {
+              console.log('=====', child)
+            }
+          })
           resolve(gltf);
         }, ({ loaded, total }) => {
           let load = Math.abs(loaded / total * 100);
@@ -187,7 +211,7 @@ export default {
       let intersects = this.raycaster.intersectObjects(this.scene.children)
       // console.log('******intersects******', intersects)
       for (let i = 0, len = intersects.length; i < len; i++) {
-        console.log('**** NAME ****', intersects[i].object.name)
+        console.log('**** NAME ****', intersects[i].object)
         if (intersects[i].object.name.includes('wheels')) {
           // console.log(180, intersects[i].object)
           let color = Math.random() * 16 * 0xffffff

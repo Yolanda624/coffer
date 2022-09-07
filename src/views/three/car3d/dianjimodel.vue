@@ -40,6 +40,8 @@ export default {
       // 场景，相机
       this.scene = new THREE.Scene()
       this.scene.background = new THREE.Color(0xf2f2f2)
+      // this.scene.fog = new THREE.Fog( 0xeeeeee, 10, 50 )
+      // 设置场景的背景色
       this.camera = new THREE.PerspectiveCamera(
         45,
         window.innerWidth / window.innerHeight,
@@ -54,10 +56,13 @@ export default {
       document.body.appendChild(this.renderer.domElement)
 
       // 地表格
-      const grid = new THREE.GridHelper(500, 100, 0xffffff, 0xffffff)
-      grid.material.opacity = 0.5
-      grid.material.depthWrite = false
-      grid.material.transparent = true
+      // const grid = new THREE.GridHelper(500, 10, 0x000000, 0x000000)
+      // grid.material.opacity = 0.1
+      // grid.material.depthWrite = true
+      // grid.material.transparent = true
+      //
+      // // this.grid = new THREE.GridHelper( 100, 40, 0x000000, 0x000000 )
+      //
       // this.scene.add(grid)
 
       // 材质

@@ -193,7 +193,19 @@ export default new Router({
   },
   {
     path: '/three/dianjimodel',
-    component: () => import('@/views/three/car3d/dianjimodel'),
+    component: () => import('@/views/three/dianjimodel'),
+  },
+  {
+    path: '/three/show-text/a1',
+    component: () => import('@/views/three/model-show-text/a1')
+  },
+  {
+    path: '/three/show-text/a2',
+    component: () => import('@/views/three/model-show-text/a2')
+  },
+  {
+    path: '/three/show-text/a3',
+    component: () => import('@/views/three/model-show-text/a3')
   },
   {
     path: '/three/sprite',
@@ -210,7 +222,7 @@ export default new Router({
       {
         path: 'sprite-rain',
         component: () => import('@/views/three/sprite/sprite-rain')
-      }
+      },
     ]
   },
   {

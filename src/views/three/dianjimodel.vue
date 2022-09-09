@@ -1,5 +1,5 @@
 <template>
-  <div class="card3d-index" ref="car3d" id="car3d"></div>
+  <div></div>
 </template>
 
 <script>
@@ -18,6 +18,7 @@ export default {
     let scene, camera, renderer, control, clock, mixer
 
     return {
+
       mouse: new THREE.Vector2(),
       raycaster: new THREE.Raycaster(),
 
@@ -93,6 +94,9 @@ export default {
       this.scene.add(axesHelper)
       this.onLoader()
       this.animate()
+
+      this.$refs.car3d.addEventListener('click', this.onMouseClick, false)
+
     },
 
     onLoader() {

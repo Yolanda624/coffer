@@ -14,6 +14,9 @@ export default new Router({
   //     }
   //   }
   // },
+
+  // 为了配合qiankun主应用，此应用作为子项目之一
+  base: window.__POWERED_BY_QIANKUN__ ? '/coffer' : '/',
   routes: [{
     path: '/',
     name: 'home',
@@ -177,9 +180,59 @@ export default new Router({
     path: '/three/gltf',
     component: () => import('@/views/three/gltf'),
   },
-    {
-      path: '/comps/a-date-picker',
-      component: () => import('@/views/comps-demo/date-picker-demo'),
-    },
+  {
+    path: '/three/dae',
+    component: () => import('@/views/three/dae'),
+  },
+  {
+    path: '/three/obj',
+    component: () => import('@/views/three/obj'),
+  },
+  {
+    path: '/three/car3d',
+    component: () => import('@/views/three/car3d/index'),
+  },
+  {
+    path: '/three/dianjimodel',
+    component: () => import('@/views/three/dianjimodel'),
+  },
+  {
+    path: '/three/show-text/a1',
+    component: () => import('@/views/three/model-show-text/a1')
+  },
+  {
+    path: '/three/show-text/a2',
+    component: () => import('@/views/three/model-show-text/a2')
+  },
+  {
+    path: '/three/show-text/a3',
+    component: () => import('@/views/three/model-show-text/a3')
+  },
+  {
+    path: '/three/show-text/a4',
+    component: () => import('@/views/three/model-show-text/a4')
+  },
+  {
+    path: '/three/sprite',
+    component: () => import('@/views/three/sprite/index'),
+    children: [
+      {
+        path: 'sprite1',
+        component: () => import('@/views/three/sprite/sprite1')
+      },
+      {
+        path: 'sprite-tree',
+        component: () => import('@/views/three/sprite/sprite-tree')
+      },
+      {
+        path: 'sprite-rain',
+        component: () => import('@/views/three/sprite/sprite-rain')
+      },
+    ]
+  },
+  {
+    path: '/comps/a-date-picker',
+    component: () => import('@/views/comps-demo/date-picker-demo'),
+  },
   ]
 });

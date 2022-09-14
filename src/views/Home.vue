@@ -70,6 +70,10 @@ export default {
         {
           title: 'ADatePicker组件封装',
           route: '/comps/a-date-picker'
+        },
+        {
+          title: 'THREE学习',
+          route: '/three'
         }
       ]
     }

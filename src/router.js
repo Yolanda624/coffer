@@ -208,6 +208,10 @@ export default new Router({
     component: () => import('@/views/three/model-show-text/a3')
   },
   {
+    path: '/three/show-text/a4',
+    component: () => import('@/views/three/model-show-text/a4')
+  },
+  {
     path: '/three/sprite',
     component: () => import('@/views/three/sprite/index'),
     children: [

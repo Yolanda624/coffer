@@ -10,6 +10,9 @@ import VueFroala from 'vue-froala-wysiwyg'; // froala所需
 
 import './public-path';
 
+import vue3dLoader from 'vue-3d-loader'
+// console.log('888888', vue3dLoader)
+
 window.jquery = window.$ = jquery; // froala所需
 require('froala-editor/js/froala_editor.pkgd.min.js'); // froala所需
 require('froala-editor/js/languages/zh_cn.js');
@@ -18,6 +21,9 @@ require('font-awesome/css/font-awesome.css'); // froala所需
 require('froala-editor/css/froala_style.min.css'); // froala所需
 Vue.use(VueFroala); // froala所需
 Vue.use(iView);
+
+Vue.use(vue3dLoader)
+
 Vue.config.productionTip = false;
 // new Vue({
 //   router,

@@ -213,6 +213,10 @@ export default new Router({
     component: () => import('@/views/three/model-show-text/a4')
   },
   {
+    path: '/three/vue-3d-loader',
+    component: () => import('@/views/three/vue-3d-loader_demo/index')
+  },
+  {
     path: '/three/sprite',
     component: () => import('@/views/three/sprite/index'),
     children: [

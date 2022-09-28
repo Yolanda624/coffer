@@ -209,12 +209,20 @@ export default new Router({
     component: () => import('@/views/three/model-show-text/a3')
   },
   {
+    path: '/three/show-text/a3/2',
+    component: () => import('@/views/three/model-show-text/a3_2')
+  },
+  {
     path: '/three/show-text/a4',
     component: () => import('@/views/three/model-show-text/a4')
   },
   {
     path: '/three/vue-3d-loader',
     component: () => import('@/views/three/vue-3d-loader_demo/index')
+  },
+  {
+    path: '/three/model-loader',
+    component: () => import('@/views/three/model-loader-demo/index')
   },
   {
     path: '/three/sprite',

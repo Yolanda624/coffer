@@ -1,9 +1,14 @@
 <template>
-  <div class="model-loader-index">
-    <div class="viewer-container" ref="container">
-      <canvas class="viewer-canvas" ref="canvas" @click="onClick"></canvas>
-      <slot></slot>
+  <div class="viewer-container" ref="container">
+    <div class="maskLoading" v-if="loadingPrecent < 100">
+      <div class="loading">
+        <div class="bar" :style="{ width: loadingPrecent + '%' }">
+          <span v-if="loadingPrecent > 10">{{ loadingPrecent }} %</span>
+        </div>
+      </div>
     </div>
+    <canvas class="viewer-canvas" ref="canvas" @click="onClick"></canvas>
+    <slot></slot>
   </div>
 </template>
 
@@ -68,6 +73,7 @@ export default {
 
   data() {
     return {
+      loadingPrecent: 0,
       el: null, // this.$refs.container
       width: this.width,
       height: this.height,
@@ -140,11 +146,11 @@ export default {
         } else if(type === 'directional' || type === 'directionallight') {
           light = new DirectionalLight(color, intensity);
         }
-        if(item.position) {
+        if (item.position) {
           light.position.copy(item.position)
         }
 
-        if(light) {
+        if (light) {
           this.scene.add(light)
         }
       })
@@ -162,6 +168,10 @@ export default {
         this.scene.add(gltf.scene)
         this.$emit('load', this.scene, this.camera);
       }, process => {
+        let { loaded, total } = process;
+        console.log('process, total', process, total)
+        let load = Math.abs(loaded / total * 100);
+        this.loadingPrecent = load;
         this.$emit('process', process);
       }, error => {
         this.$emit('error', error);
@@ -233,9 +243,6 @@ export default {
 </script>
 
 <style lang='less' scoped>
-.model-loader-index {
-  width: 900px;
-  height: 600px;
   .viewer-container {
     position: relative;
     width: 100%;
@@ -243,11 +250,40 @@ export default {
     margin: 0;
     border: 0;
     padding: 0;
+    .maskLoading {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      color: #ffffff;
+      background: rgba(0, 0, 0, 0.7);
+      .loading {
+        width: 400px;
+        height: 16px;
+        border: 1px solid #a0a0a0;
+        border-radius: 10px;
+        background: #fff;
+        .bar {
+          background: #1c2541;
+          height: 100%;
+          width: 0;
+          text-align: center;
+          border-radius: 10px;
+          transition-duration: 500ms;
+          transition-timing-function: ease-in;
+        }
+      }
+    }
+    .viewer-canvas {
+      width: 100%;
+      height: 100%;
+    }
   }
 
-  .viewer-canvas {
-    width: 100%;
-    height: 100%;
-  }
-}
+
 </style>

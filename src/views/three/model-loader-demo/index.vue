@@ -11,9 +11,15 @@
         {{ item.name }}
       </div>
     </div>
+    <!--      file-path="http://10.0.0.147:5501/fbx/Samba Dancing.fbx"-->
+<!--    file-path="http://10.0.0.147:5501/gltf-models/a2.gltf"-->
+    <!--    file-path="http://10.0.0.147:5501/dae-models/stormtrooper/stormtrooper.dae"-->
+
     <model-loader
-      file-path="http://10.0.0.147:5500/a2.gltf"
       ref="model3d"
+      file-path="http://10.0.0.147:5501/fbx/Samba Dancing.fbx"
+      :scale="{ x:0.4, y: 0.4, z: 0.4 }"
+      :cameraPosition="{x: 50, y: 200, z: 200}"
       @load="onLoad"
       @render="onRender"
       @click="onClick"
@@ -116,6 +122,8 @@ export default {
 
 <style lang='less' scoped>
 .model-loader-demo {
+  height: 800px;
+  width: 800px;
   .tag {
     position: absolute;
     width: 10px;

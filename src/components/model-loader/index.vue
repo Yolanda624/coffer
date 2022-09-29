@@ -14,8 +14,8 @@
 
 <script>
 import {
-  AmbientLight,
-  AxesHelper, DirectionalLight,
+  AmbientLight, AnimationMixer,
+  AxesHelper, Clock, DirectionalLight,
   LinearEncoding,
   Object3D,
   PerspectiveCamera,
@@ -35,7 +35,7 @@ export default {
   props: {
     filePath: {
       type: String,
-      default: 'http://10.0.0.147:5500/a10.gltf'
+      default: 'http://10.0.0.147:5500/gltf-models/a10.gltf'
     },
     outputEncoding: {
       type: String,
@@ -66,25 +66,51 @@ export default {
     cameraPosition: {
       type: Object,
       default: () => {
-        return { x: 1200, y: 0, z: 0 };
+        return { x: 0, y: 0, z: 0 };
       },
-    }
+    },
+    autoPlay: {
+      type: Boolean,
+      default: () => {
+        return true;
+      },
+    },
+    scale: {
+      type: Object,
+      default: () => {
+        return { x: 1, y: 1, z: 1 };
+      },
+    },
+    rotation: {
+      type: Object,
+      default: () => {
+        return { x: 0, y: 0, z: 0 };
+      },
+    },
+    position: {
+      type: Object,
+      default: () => {
+        return { x: 0, y: 0, z: 0 };
+      },
+    },
   },
 
   data() {
     return {
-      loadingPrecent: 0,
-      el: null, // this.$refs.container
+      loadingPrecent: 0, // 模型加载进度 %
+      el: null, // this.$refs.cnavas
       width: this.width,
       height: this.height,
       object: null,
+      clock: new Clock(),
       raycaster: new Raycaster(),
       scene: new Scene(),
       camera: new PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000),
       renderer: null,
       controls: null,
       loader: null,
-      requestAnimationId: null
+      requestAnimationId: null,
+      mixer: null,
     };
   },
 
@@ -141,7 +167,7 @@ export default {
         let light = null;
         const color = item.color || 0xffffff;
         const intensity = item.intensity || 1;
-        if(type === 'ambient' || type === 'ambientlight') {
+        if (type === 'ambient' || type === 'ambientlight') {
           light = new AmbientLight(color, intensity);
         } else if(type === 'directional' || type === 'directionallight') {
           light = new DirectionalLight(color, intensity);
@@ -163,9 +189,14 @@ export default {
     },
 
     onLoader() {
-      this.loader = new GLTFLoader()
-      this.loader.load(this.filePath, gltf => {
-        this.scene.add(gltf.scene)
+      let _loader = getLoader(this.filePath);
+      this.loader = _loader.loader;
+      this.loader.load(this.filePath, (...args) => {
+        let model = _loader.getObject(...args);
+        this.object = model;
+        this.scene.add(model);
+        this.playAnimations(model);
+        this.updateModel(model);
         this.$emit('load', this.scene, this.camera);
       }, process => {
         let { loaded, total } = process;
@@ -180,12 +211,33 @@ export default {
 
     animate() {
       this.requestAnimationId = requestAnimationFrame(this.animate);
-      // this.updateStats();
-      // const delta = this.clock.getDelta();
-      // if (this.mixer) this.mixer.update(delta);
+      const delta = this.clock.getDelta();
+      if (this.mixer) this.mixer.update(delta);
       this.controls.update();
       this.render();
       this.$emit('animate')
+    },
+    playAnimations(object) {
+      this.mixer = new AnimationMixer(object);
+      if (this.object.animations) {
+        this.object.animations.forEach(clip => {
+          if (clip) {
+            const action = this.mixer.clipAction(clip);
+            if (!this.autoPlay) {
+              action.stop();
+            } else {
+              action.play();
+            }
+          }
+        });
+      }
+    },
+    updateModel(model) {
+      const { position, rotation, scale } = this;
+      if (!model) return;
+      if (scale) model.scale.set(scale.x, scale.y, scale.z);
+      if (position) model.position.set(position.x, position.y, position.z);
+      if (rotation) model.rotation.set(rotation.x, rotation.y, rotation.z);
     },
     render() {
       this.renderer.render(this.scene, this.camera);

@@ -2,6 +2,8 @@ import { LoadingManager } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { DDSLoader } from "three/examples/jsm/loaders/DDSLoader";
 import { TGALoader } from "three/examples/jsm/loaders/TGALoader";
+import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
+import { ColladaLoader } from "three/examples/jsm/loaders/ColladaLoader.js";
 
 const manager = new LoadingManager();
 manager.addHandler(/\.dds$/i, new DDSLoader());
@@ -25,6 +27,22 @@ function getLoader(filePath, fileType) {
         loader: new GLTFLoader(manager),
         getObject: gltf => {
           return gltf.scene;
+        }
+      };
+      break;
+    case 'fbx':
+      obj = {
+        loader: new FBXLoader(manager),
+        getObject: fbx => {
+          return fbx;
+        }
+      };
+      break;
+    case 'dae':
+      obj = {
+        loader: new ColladaLoader(manager),
+        getObject: fbx => {
+          return fbx.scene;
         }
       };
       break;

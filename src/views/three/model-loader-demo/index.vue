@@ -15,10 +15,12 @@
 <!--    file-path="http://10.0.0.147:5501/gltf-models/a2.gltf"-->
     <!--    file-path="http://10.0.0.147:5501/dae-models/stormtrooper/stormtrooper.dae"-->
 
+<!--    :scale="{x: 0.4, y: 0.4, z: 0.4}"-->
+
     <model-loader
       ref="model3d"
-      file-path="http://10.0.0.147:5501/fbx/Samba Dancing.fbx"
-      :scale="{ x:0.4, y: 0.4, z: 0.4 }"
+      file-path="http://10.0.0.147:5501/gltf-models/a2.gltf"
+      :scale="scale"
       :cameraPosition="{x: 50, y: 200, z: 200}"
       @load="onLoad"
       @render="onRender"
@@ -45,7 +47,8 @@ export default {
 
   data() {
     return {
-      labels: []
+      labels: [],
+      scale: { x: 0.4, y: 0.4, z: 0.4 }
     };
   },
 
@@ -88,11 +91,13 @@ export default {
       let { width, height } = modelDOM.getBoundingClientRect();
       let worldVector = new THREE.Vector3(position.x, position.y, position.z);
       let vector = worldVector.project(camera);
-      // console.log('转换后', vector.x, vector.y, width, height);
+      console.log('转换后', vector.x, vector.y, width, height);
       let halfWidth = width / 2;
       let halfHeight = height / 2;
-      let x = Math.round(vector.x * halfWidth + halfWidth);
-      let y = Math.round(-vector.y * halfHeight + halfHeight);
+      let scale_x = this.scale.x || 1;
+      let scale_y = this.scale.y || 1;
+      let x = Math.round(vector.x * scale_x * halfWidth + halfWidth);
+      let y = Math.round(-vector.y * scale_y * halfHeight + halfHeight);
       labelTarget.style.left = x + 'px';
       labelTarget.style.top = y + 'px';
     },

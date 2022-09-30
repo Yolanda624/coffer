@@ -244,7 +244,6 @@ export default {
       this.$emit('render', this.scene, this.camera, this.controls);
     },
 
-
     // *通过name集合获取模型集合
     //     names = [{ name: 'sensor', type: 'Mesh' }, { name: 'fire', type: 'Object3D' }]
     //   return [Object3D]
@@ -253,7 +252,7 @@ export default {
       if (names instanceof Array && names.length === 0) return [];
       let res = [];
       console.log(184, names)
-      this.scene.traverse(child => {
+      this.object.traverse(child => {
         let isEx = names.findIndex(item => { return item.name === child.name && item.type === child.type });
         if (isEx > -1) res[isEx] = child;
       });
@@ -261,7 +260,6 @@ export default {
     },
 
     onClick(event) {
-      console.log('点击啦')
       const intersected = this.pick(event.clientX, event.clientY);
       this.$emit('click', event, intersected);
     },
@@ -281,7 +279,7 @@ export default {
   },
 
   mounted() {
-    this.init()
+    this.init();
   },
 
   beforeDestroy() {

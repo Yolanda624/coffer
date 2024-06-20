@@ -246,5 +246,13 @@ export default new Router({
     path: '/comps/a-date-picker',
     component: () => import('@/views/comps-demo/date-picker-demo'),
   },
+  {
+    path: '/iframe',
+    component: () => import('@/views/About.vue'),
+  },
+    {
+      path: '/g6',
+      component: () => import('@/views/G6/index.vue'),
+    },
   ]
 });

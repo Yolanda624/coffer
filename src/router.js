@@ -250,9 +250,13 @@ export default new Router({
     path: '/iframe',
     component: () => import('@/views/About.vue'),
   },
-    {
-      path: '/g6',
-      component: () => import('@/views/G6/index.vue'),
-    },
+  {
+    path: '/g6',
+    component: () => import('@/views/G6/index.vue'),
+  },
+  {
+    path: '/ledger',
+    component: () => import('@/views/ledger/index.vue'),
+  },
   ]
 });
